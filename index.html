@@ -3,25 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Voting Form</title>
+  <title>1v1 Voting Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .options {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .options label {
+      display: block;
+      margin: 10px 0;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      color: green;
+    }
+  </style>
 </head>
 <body>
-  <h1>Vote for Your Favorite</h1>
-  <form action="https://formspree.io/f/mvgkggay" method="POST">
-    <label>
-      Your email:
-      <input type="email" name="email">
-    </label>
-    <label>
-      Your message:
-      <textarea name="message"></textarea>
-    </label>
-    <label for="vote">Who do you prefer?</label><br>
-    <input type="radio" id="optionA" name="vote" value="Option A" required>
-    <label for="optionA">Option A</label><br>
-    <input type="radio" id="optionB" name="vote" value="Option B" required>
-    <label for="optionB">Option B</label><br><br>
-    <button type="submit">Send</button>
-  </form>
+
+  <div class="form-container">
+    <h1>Vote for Your Favorite Option</h1>
+    <form id="votingForm" action="https://formspree.io/f/your-form-id" method="POST">
+      
+      <div class="options">
+        <label>
+          <input type="radio" name="vote" value="Option A" required>
+          Option A: The best choice
+        </label>
+        <label>
+          <input type="radio" name="vote" value="Option B" required>
+          Option B: The alternative
+        </label>
+      </div>
+      
+      <input type="email" name="_replyto" placeholder="Your email (optional)" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px;" />
+      
+      <input type="submit" class="submit-btn" value="Submit Vote">
+    </form>
+    
+    <div class="success-message" id="successMessage">
+      Thank you for voting!
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('votingForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      
+      // Submit form data to Formspree
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+      })
+      .then(response => {
+        if (response.ok) {
+          form.reset(); // Reset the form fields
+          form.style.display = 'none'; // Hide the form
+          successMessage.style.display = 'block'; // Show the success message
+        } else {
+          alert("There was an issue with your submission. Please try again.");
+        }
+      })
+      .catch(error => {
+        alert("There was an issue with your submission. Please try again.");
+      });
+    });
+  </script>
+
 </body>
 </html>
