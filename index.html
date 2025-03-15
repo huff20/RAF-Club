@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting Form</title>
+</head>
+<body>
+  <h1>Vote for Your Favorite</h1>
+  <form action="https://formspree.io/f/your-email" method="POST">
+    <label for="vote">Who do you prefer?</label><br>
+    <input type="radio" id="optionA" name="vote" value="Option A" required>
+    <label for="optionA">Option A</label><br>
+    <input type="radio" id="optionB" name="vote" value="Option B" required>
+    <label for="optionB">Option B</label><br><br>
+    <input type="submit" value="Submit Vote">
+  </form>
+</body>
+</html>
