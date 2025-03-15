@@ -14,6 +14,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
     }
 
     .form-container {
@@ -42,7 +43,7 @@
       color: #555;
     }
 
-    .submit-btn {
+    .next-btn {
       padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
@@ -52,14 +53,16 @@
       font-size: 16px;
     }
 
-    .submit-btn:hover {
+    .next-btn:hover {
       background-color: #45a049;
     }
-
-    .success-message {
+    
+    .question {
       display: none;
-      margin-top: 20px;
-      color: green;
+    }
+
+    .active-question {
+      display: block;
     }
   </style>
 </head>
@@ -68,53 +71,90 @@
   <div class="form-container">
     <h1>Vote for Your Favorite Option</h1>
     <form id="votingForm" action="https://formspree.io/f/mvgkggay" method="POST">
-      
+    <!-- Question 1 -->
+    <div id="question1" class="question active-question">
+      <h2>Question 1</h2>
       <div class="options">
         <label>
-          <input type="radio" name="vote" value="Option A" required>
+          <input type="radio" name="vote1" value="Option A">
           Option A: The best choice
         </label>
         <label>
-          <input type="radio" name="vote" value="Option B" required>
+          <input type="radio" name="vote1" value="Option B">
           Option B: The alternative
         </label>
       </div>
-      
-      <input type="email" name="_replyto" placeholder="Your email (optional)" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px;" />
-      
-      <input type="submit" class="submit-btn" value="Submit Vote">
-    </form>
-    
-    <div class="success-message" id="successMessage">
-      Thank you for voting!
+      <button class="next-btn" onclick="nextQuestion(1)">Next Question</button>
     </div>
+
+    <!-- Question 2 -->
+    <div id="question2" class="question">
+      <h2>Question 2</h2>
+      <div class="options">
+        <label>
+          <input type="radio" name="vote2" value="Option A">
+          Option A: Another choice
+        </label>
+        <label>
+          <input type="radio" name="vote2" value="Option B">
+          Option B: Another alternative
+        </label>
+      </div>
+      <button class="next-btn" onclick="nextQuestion(2)">Next Question</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div id="question3" class="question">
+      <h2>Question 3</h2>
+      <div class="options">
+        <label>
+          <input type="radio" name="vote3" value="Option A">
+          Option A: The final choice
+        </label>
+        <label>
+          <input type="radio" name="vote3" value="Option B">
+          Option B: The last alternative
+        </label>
+      </div>
+      <button class="next-btn" onclick="submitForm()">Submit All Votes</button>
+    </div>
+    </form>
   </div>
 
   <script>
-    const form = document.getElementById('votingForm');
-    const successMessage = document.getElementById('successMessage');
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
+    // Function to go to the next question
+    function nextQuestion(questionNumber) {
+      // Get the current question and hide it
+      const currentQuestion = document.getElementById(`question${questionNumber}`);
+      currentQuestion.classList.remove('active-question');
       
-      // Submit form data to Formspree
-      fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-      })
-      .then(response => {
-        if (response.ok) {
-          form.reset(); // Reset the form fields
-          form.style.display = 'none'; // Hide the form
-          successMessage.style.display = 'block'; // Show the success message
-        } else {
-          alert("There was an issue with your submission. Please try again.");
-        }
-      })
-      .catch(error => {
-        alert("There was an issue with your submission. Please try again.");
-      });
-    });
+      // Get the next question and show it
+      const nextQuestion = document.getElementById(`question${questionNumber + 1}`);
+      if (nextQuestion) {
+        nextQuestion.classList.add('active-question');
+      }
+    }
+
+    // Function to submit the form (you can integrate with Formspree or other backend here)
+    function submitForm() {
+      const votes = {
+        vote1: document.querySelector('input[name="vote1"]:checked')?.value,
+        vote2: document.querySelector('input[name="vote2"]:checked')?.value,
+        vote3: document.querySelector('input[name="vote3"]:checked')?.value,
+      };
+
+      // Check if all questions have been answered
+      if (!votes.vote1 || !votes.vote2 || !votes.vote3) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      // Log the votes to the console (or send to a server)
+      console.log('Votes:', votes);
+
+      // Show a confirmation message
+      alert('Thank you for voting! Your votes have been submitted.');
+    }
   </script>
 
 </body>
