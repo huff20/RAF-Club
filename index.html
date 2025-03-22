@@ -16,12 +16,16 @@
             font-family: "Georgia";
             font-size: 50px;
             text-align: center;
+            padding-left: 5%;
+            padding-right: 5%;
         }
 
         h2 {
             font-family: "Roboto";
             font-size: 30px;
             text-align: center;
+            padding-left: 5%;
+            padding-right: 5%;
         }
 
         .name {
@@ -32,8 +36,8 @@
             text-align: center;
             position: absolute;
             top: 25%;
-            padding-left: 10%;
-            padding-right: 10%;
+            padding-left: 5%;
+            padding-right: 5%;
         }
 
         p {
@@ -404,17 +408,17 @@
         <div id="header" class="header">
             <h2 id="headerAnimal">Green Tree Frogs</h2>
         </div>
-        <!-- Left Option -->
+        <!-- Option A is better -->
         <div id="leftQ" display="block" class="left-option">
             <h2>Option A</h2>
             <div id="leftName" class="name">Empty</div>
-            <button id="leftQB" class="left-option-btn" type="button" onclick="leftClick()">Left Option</button>
+            <button id="leftQB" class="left-option-btn" type="button" onclick="leftClick()">Option A is better</button>
         </div>
-        <!-- Right Option -->
+        <!-- Option B is better -->
         <div id="rightQ" class="right-option">
             <h2>Option B</h2>
             <div id="rightName" class="name">Empty</div>
-            <button id="rightQB" class="right-option-btn" type="button" onclick="rightClick()">Right Option</button>
+            <button id="rightQB" class="right-option-btn" type="button" onclick="rightClick()">Option B is better</button>
         </div>
         <!-- Back -->
         <input id="back" class="back" type="button" value="Back" onclick="backClick()"></input>
@@ -438,19 +442,19 @@
         var subtitleElement;
         var temporaryTable = [];
         var temporaryCSVString = "";
-        let frogNames = ["a", "b", "c"];
+        let frogNames = ["Louie, Kermit and Wazowski", "Riberto, Kale and Basil", "Matcha, Sencha and Bancha", "Pepe, Mehmet and Tiddalick", "Luigi, Yoshi and Toad", "Frankie, Pobble and Kermit"]
         let frogArray = [];
         let frogResult = [];
         let frogTally = [];
-        let bluetongueNames = ["a", "b", "c"];
+        let bluetongueNames = ["Lizzie and Kenzi", "Bluey and Godzilla", "Vladimir and Volodymyr", "Syrax and Seasmoke", "Ziggy and Stardust", "Blizzard and Basilisk"];
         let bluetongueArray = [];
         let bluetongueResult = [];
         let bluetongueTally = [];
-        let axolotlNames = ["a", "b", "c"];
+        let axolotlNames = ["Polly and Molly", "Fable and Glen", "Godzilla and Quetzalcoatl", "Nimbus and Gilbert", "Kaiser and Ness", "Zeus and Poseidon", "Billy and Mosey"];
         let axolotlArray = [];
         let axolotlResult = [];
         let axolotlTally = [];
-        let turtleNames = ["a", "b", "c"];
+        let turtleNames = ["Da Vinci and Giovanni", "Turbo and Drift", "Aristurtle and Socraturtle", "Bowser and Shelldon", "Master Oogway and Herbert", "Squirtle and Myrtle"];
         let turtleArray = [];
         let turtleResult = [];
         let turtleTally = [];
@@ -684,22 +688,22 @@
             document.getElementById("back").style.opacity = 0;
             if (i == 0) {
                 document.getElementById("subAnimal").textContent = "Green Tree Frogs";
-                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best group of three names for the three remaining frogs we have here at RAF. (There are five frogs pictured in the image but sadly two of them have passed away nameless.) From each pair provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subDescription").innerHTML = "In this section, you will be voting to select the best group of three names for the three remaining frogs we have here at RAF Club. (There are five frogs pictured in the image but sadly two of them have passed away nameless.) <br>From each pair provided, please select the better group of three names, or if they are equally good/bad, simpy press the \"Equally Good' button.\"";
                 document.getElementById("subImage").src = "https://raw.githubusercontent.com/huff20/RAF-Club/refs/heads/main/Animal-Photos/frog.jpg";
                 document.getElementById("subImage").alt = "Image of our green tree frogs";
             } else if (i == 1) {
                 document.getElementById("subAnimal").textContent = "Blue-Tongued Lizards";
-                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best pair of names for the two blue-tongue lizards we have here at RAF. From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subDescription").innerHTML = "In this section, you will be voting to select the best pair of names for the two blue-tongue lizards we have here at RAF Club. <br>From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the \"Equally Good\" button.";
                 document.getElementById("subImage").src = "https://raw.githubusercontent.com/huff20/RAF-Club/refs/heads/main/Animal-Photos/bluetongue.jpg";
                 document.getElementById("subImage").alt = "Image of our blue-tongued lizards";
             } else if (i == 2) {
                 document.getElementById("subAnimal").textContent = "Axolotls";
-                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best pair of names for the two axolotls we have here at RAF. From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subDescription").innerHTML = "In this section, you will be voting to select the best pair of names for the two axolotls we have here at RAF Club. <br>From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the \"Equally Good\" button.";
                 document.getElementById("subImage").src = "https://raw.githubusercontent.com/huff20/RAF-Club/refs/heads/main/Animal-Photos/axolotl.jpg";
                 document.getElementById("subImage").alt = "Image of our axolotls";
             } else if (i == 3) {
                 document.getElementById("subAnimal").textContent = "Turtles";
-                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best pair of names for the two Macleay River short neck turtles we have here at RAF. From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subDescription").innerHTML = "In this section, you will be voting to select the best pair of names for the two Macleay River short neck turtles we have here at RAF Club. <br>From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the \"Equally Good\" button.";
                 document.getElementById("subImage").src = "https://raw.githubusercontent.com/huff20/RAF-Club/refs/heads/main/Animal-Photos/turtle.jpg";
                 document.getElementById("subImage").alt = "Image of our turtles";
             } else {
