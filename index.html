@@ -871,9 +871,9 @@
             } else {
                 if (document.getElementById("OTPInput").value == userPasscode) {
                     for (p = 0; p < 4; p++) {
-                        csvData += convertToCSV(arraysStage(p)[3])+"/...";
+                        csvData += convertToCSV(arraysStage(p)[3])+".../";
                     }
-                    csvData = csvData.slice(0, -4);
+                    csvData = csvData.slice(0, -5);
                     document.getElementById("checkOTPBtn").disabled = 1;
                     sendVote();
                 } else {
