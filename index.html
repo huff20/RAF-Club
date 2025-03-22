@@ -506,7 +506,7 @@
             }
         }
 
-        //window.onresize = animalImageResize;
+        window.onresize = animalImageResize;
 
         function animalImageResize() {
             subtitleElement = document.getElementById("subtitle");
@@ -711,7 +711,7 @@
                     document.getElementById("subtitle").style.opacity = 1;
                     document.getElementById("back2").disabled = 0;
                     document.getElementById("start2").disabled = 0;
-                    //animalImageResize();
+                    animalImageResize();
                 } else if (i == 4) {
                     document.getElementById("back3").disabled = 0;
                     document.getElementById("start3").disabled = 0;
