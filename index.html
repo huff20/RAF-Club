@@ -466,9 +466,6 @@
         function randomise() {
             for (i = 0; i < 4; i++) {
                 randomOrder(arraysStage(i))
-                console.log("names are: " + arraysStage(i)[0].toString());
-                console.log("combinations are: " + arraysStage(i)[1].toString());
-                console.log("tally is: " + arraysStage(i)[3].toString());
             }
             document.getElementById("leftQB").disabled = 1;
             document.getElementById("rightQB").disabled = 1;
@@ -529,7 +526,6 @@
             subtitleElement = document.getElementById("subtitle");
             if (subtitleElement.style.opacity == 1) {
                 animalImageElement = document.getElementById("subImage");
-                console.log("resized2")
                 animalImageElement.width = Math.min(subtitleElement.clientWidth * 0.45, (subtitleElement.clientHeight - 170) * animalImageElement.width / animalImageElement.height);
             }
         }
@@ -540,9 +536,7 @@
                 tally[k][1] = 0;
                 tally[k][2] = 0;
             }
-            console.log("Tallies reset")
             for (let i = 0; i < array.length; i++) {
-                console.log("a tally counted")
                 let index1 = names.indexOf(array[i][0].toString());
                 let index2 = names.indexOf(array[i][1].toString());
 
@@ -564,9 +558,6 @@
                     tally[index2][0]++;
                 }
             }
-            console.log("New tallies counted")
-            console.log(result.toString());
-            console.log(tally);
         }
 
         function arraysStage(i) {
@@ -593,7 +584,7 @@
                     temporaryCSVString += (temporaryTable[i][j] + ".");
                 }
                 temporaryCSVString = temporaryCSVString.slice(0, -1);
-                temporaryCSVString += "/...";
+                temporaryCSVString += "/";
             }
             return temporaryCSVString;
         }
@@ -616,16 +607,12 @@
         }
 
         function nextQ() {
-            console.log(frogResult.toString())
-            console.log("step is: " + step.toString())
-            console.log("stage is: " + stage.toString())
             document.getElementById("leftQ").style.opacity = 0;
             document.getElementById("rightQ").style.opacity = 0;
             document.getElementById("leftQB").disabled = 1;
             document.getElementById("rightQB").disabled = 1;
             if (step == arraysStage(stage)[1].length) {
                 countVotes(arraysStage(stage));
-                alert("votes counted for stage: " + stage.toString());
                 step = 0;
                 stage++;
                 setSubtitle(stage);
@@ -719,8 +706,6 @@
                 document.getElementById("subDescription").innerHTML = "In this section, you will be voting to select the best pair of names for the two Macleay River short neck turtles we have here at RAF Club. <br>From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the \"Equally Good\" button.";
                 document.getElementById("subImage").src = "https://raw.githubusercontent.com/huff20/RAF-Club/refs/heads/main/Animal-Photos/turtle.jpg";
                 document.getElementById("subImage").alt = "Image of our turtles";
-            } else {
-                alert("Error: no subtitle available!");
             }
 
             setTimeout(() => {
@@ -799,7 +784,6 @@
         }
 
         function backClick() {
-            console.log("Step number: " + step)
             timeoutBtnBackwards();
             if (step == 1) {
                 //Go back to subtitle of section
@@ -833,15 +817,12 @@
                 setTimeout(() => { fadeIn() }, transitionDelay);
             }
 
-            console.log(step)
         }
 
         function verifyEmail() {
-            console.log(document.getElementById("emailInput").value.slice(-15));
             if (document.getElementById("emailInput").value.slice(-15) == "@mhs.vic.edu.au") {
                 document.getElementById("verifyEmailBtn").disabled = 1;
                 userPasscode = Math.floor(Math.random() * 1000000).toString();
-                console.log(userPasscode)
                 for (i = 6 - userPasscode.length; i > 0; i--) {
                     userPasscode = "0" + userPasscode;
                 }
@@ -871,7 +852,6 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log("SUCCESS!", data);
                     document.getElementById("verifyEmailBtn").textContent = "Email Sent!";
                     document.getElementById("nameInput").disabled = 1;
                     document.getElementById("emailInput").disabled = 1;
@@ -879,28 +859,25 @@
                     document.getElementById("checkOTPBtn").disabled = 0;
                 })
                 .catch(error => {
-                    console.error("FAILED...", error);
                     document.getElementById("verifyEmailBtn").textContent = "Failed: click to retry."
                     document.getElementById("verifyEmailBtn").disabled = 0;
                 });
         }
 
         function checkOTP() {
-            console.log(document.getElementById("OTPInput").value.toString());
             if (failedAttempts > 20) {
                 document.getElementById("checkOTPBtn").disabled = 1;
                 alert("Too many incorrect attempts. You will now need to reload this webpage and refill the form.")
             } else {
                 if (document.getElementById("OTPInput").value == userPasscode) {
-                    console.log("Authenticated!")
                     for (p = 0; p < 4; p++) {
-                        csvData += convertToCSV(arraysStage(p)[3]);
+                        csvData += convertToCSV(arraysStage(p)[3])+"/...";
                     }
+                    csvData = csvData.slice(0, -4);
                     document.getElementById("checkOTPBtn").disabled = 1;
                     sendVote();
                 } else {
                     failedAttempts += 1;
-                    console.log(failedAttempts);
                 }
             }
         }
