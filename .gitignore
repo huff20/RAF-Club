@@ -3,8 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# API Key
-configuration.js
+# Netlify Stuff
+.env
+node_modules/
+.netlify/
 
 # C extensions
 *.so
