@@ -906,6 +906,9 @@
         }
 
         function sendVote() {
+            const fullName = document.getElementById("nameInput").value;
+            const email = document.getElementById("emailInput").value;
+            
             fetch("/.netlify/functions/send-email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
