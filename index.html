@@ -592,10 +592,9 @@
             temporaryTable.unshift(["NameID", "Wins", "Draws", "Losses"]);
             for (i = 0; i < temporaryTable.length; i++) {
                 for (j = 0; j < temporaryTable[i].length; j++) {
-                    temporaryCSVString += (temporaryTable[i][j] + ",");
+                    temporaryCSVString += (temporaryTable[i][j] + ".");
                 }
-                temporaryCSVString = temporaryCSVString.slice(0, -1);
-                temporaryCSVString += "\n";
+                temporaryCSVString += "...";
             }
             return temporaryCSVString;
         }
@@ -884,7 +883,7 @@
                 if (document.getElementById("OTPInput").value == userPasscode) {
                     console.log("Authenticated!")
                     for (p = 0; p < 4; p++) {
-                        document.getElementById("csv_data").value += convertToCSV(arraysStage(p)[3]) + "\n";
+                        document.getElementById("csv_data").value += convertToCSV(arraysStage(p)[3]);
                     }
                     document.getElementById("checkOTPBtn").disabled = 1;
                     document.getElementById("votingForm").submit();
