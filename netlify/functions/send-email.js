@@ -32,11 +32,12 @@ exports.handler = async (event) => {
         }
     } else if (emailType === "VotingResult") {
         try {
+            const VotingResultMessage = `<h2>Name: ${fullName}<br>Email: ${email}</h2><p>${sentData}</p>`;
             const response = await axios.post("https://api.brevo.com/v3/smtp/email", {
                 sender: { email: process.env.BREVO_SENDER_EMAIL },
                 to: [{ email: process.env.MY_EMAIL }],
                 subject: "Voting Results - RAF Club Animal Naming Competition",
-                htmlContent: sentData
+                htmlContent: VotingResultMessage
             }, {
                 headers: {
                     "Content-Type": "application/json",
