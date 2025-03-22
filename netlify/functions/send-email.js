@@ -2,10 +2,6 @@ require("dotenv").config();
 const axios = require("axios");
 
 exports.handler = async (event) => {
-    if (event.httpMethod !== "POST") {
-        return { statusCode: 405, body: "Method Not Allowed" };
-    }
-
     try {
         const { fullName, email, passcode } = JSON.parse(event.body);
 
@@ -20,6 +16,7 @@ exports.handler = async (event) => {
                 <p>Do not share this OTP with anyone. If you didn't make this request, you can safely ignore this email.<br>The Reptiles, Amphibians and Fish Club (RAF) will never contact you about this email or ask for any login codes or links. Beware of phishing scams.<br><br>Thank you for voting in the RAF Club Animal Naming Competition. Please remember that you must <strong>verify your identity to make your vote count</strong> by submitting the OTP into the correct field!<br><br>If you did not request this code, you can safely ignore this email.</p>`;
 
         const response = await axios.post("https://api.brevo.com/v3/smtp/email", {
+            method:"POST",
             sender: { email: process.env.BREVO_SENDER_EMAIL },
             to: [{ email }],
             subject: "RAF Club Animal Naming Competition: One-Time Password",
