@@ -421,7 +421,11 @@
         <!-- Tie Button -->
         <input id="tie" class="tie" type="button" value="Equally Good" onclick="tieClick()"></input>
     </form>
-
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init({
+            publicKey: "7b8KgoLPgu6OJxc6A",
+        });
+    </script>
 
     <script>
 
@@ -458,9 +462,6 @@
                 console.log("combinations are: " + arraysStage(i)[1].toString());
                 console.log("tally is: " + arraysStage(i)[3].toString());
             }
-            emailjs.init({
-                publicKey: "7b8KgoLPgu6OJxc6A",
-            });
             document.getElementById("leftQB").disabled = 1;
             document.getElementById("rightQB").disabled = 1;
             document.getElementById("back").disabled = 1;
