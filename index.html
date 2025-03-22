@@ -399,8 +399,8 @@
                 your vote to be verified and submitted.
             </div>
             <div class="verifyContent">Name:<br>
-                <input id="nameInput" class="verifyField" type="text" placeholder="Eg. Lachlan GROTH"><br><br>Email:<br>
-                <input id="emailInput" class="verifyField" type="text" placeholder="Eg. gro0004@mhs.vic.edu.au"><br><br>
+                <input id="nameInput" class="verifyField" type="text" placeholder="Eg. Lachlan GROTH" name="Name"><br><br>Email:<br>
+                <input id="emailInput" class="verifyField" type="text" placeholder="Eg. gro0004@mhs.vic.edu.au" name="Email"><br><br>
                 <button id="verifyEmailBtn" class="verify-btn" type="button" onclick="verifyEmail()">Send
                     Email!</button><br><br><br>
                 Six-digit code:<br>
@@ -877,15 +877,21 @@
 
         function checkOTP() {
             console.log(document.getElementById("OTPInput").value.toString());
-            if (document.getElementById("OTPInput").value == userPasscode) {
-                console.log("Authenticated!")
-                for (p = 0; p < 4; p++) {
-                    document.getElementById("csv_data").value += convertToCSV(arraysStage(p)[3]) + "\n";
-                }
-                document.getElementById("votingForm").submit();
+            if (failedAttempts > 100) {
+                alert("Too many incorrect attempts. You will now need to reload this webpage and refill the form.")
+                document.getElementById("checkOTPBtn").disabled = 1;
             } else {
-                failedAttempts += 1;
-                console.log(failedAttempts);
+                if (document.getElementById("OTPInput").value == userPasscode) {
+                    console.log("Authenticated!")
+                    for (p = 0; p < 4; p++) {
+                        document.getElementById("csv_data").value += convertToCSV(arraysStage(p)[3]) + "\n";
+                    }
+                    document.getElementById("checkOTPBtn").disabled = 1;
+                    document.getElementById("votingForm").submit();
+                } else {
+                    failedAttempts += 1;
+                    console.log(failedAttempts);
+                }
             }
         }
     </script>
