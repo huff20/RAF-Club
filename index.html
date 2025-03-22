@@ -1,178 +1,875 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1v1 Voting Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1v1 Voting Form</title>
+    <style>
+        body {
+            font-family: "Roboto";
+            background-color: #f4f4f9;
+            display: flex
+        }
 
-    .form-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 300px;
-      text-align: center;
-    }
+        h1 {
+            font-family: "Georgia";
+            font-size: 50px;
+            text-align: center;
+        }
 
-    h1 {
-      font-size: 24px;
-      color: #333;
-    }
-    
-    .left-option-btn {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+        h2 {
+            font-family: "Roboto";
+            font-size: 30px;
+            text-align: center;
+        }
 
-    .left-option-btn:hover {
-      background-color: #45a049;
-    }
+        .name {
+            font-family: "Roboto";
+            font-size: 40px;
+            font-style: normal;
+            display: flex;
+            text-align: center;
+            position: absolute;
+            top: 25%;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
 
-    .right-option-btn {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+        p {
+            width: max(120px, 90%);
+            font-family: "Roboto";
+            font-size: 17px;
+            color: #313231;
+            text-align: left;
+            position: absolute;
+            left: 5%;
+            bottom: 20%;
+        }
 
-    .right-option-btn:hover {
-      background-color: #45a049;
-    }
+        .subtitleDescription {
+            width: max(80px, 40%);
+            font-family: "Roboto";
+            font-size: 17px;
+            color: #313231;
+            text-align: left;
+            position: absolute;
+            left: 5%;
+            top: 80px;
+        }
 
-    .submit-btn {
-      padding: 10px 20px;
-      background-color: #edeb61;
-      color: black;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    
-    .question {
-      display: none;
-    }
+        .confirmDescription {
+            width: max(200px, 80%);
+            height: max(200px, 80%);
+            font-family: "Roboto";
+            font-size: 20px;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
 
-    .active-question {
-      display: block;
-    }
-  </style>
+        .verifyDescription {
+            width: max(80px, 40%);
+            height: max(200px, 80%);
+            font-family: "Roboto";
+            font-size: 20px;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
+
+        .verifyField {
+            font-family: "Roboto";
+            font-size: 20px;
+            z-index: 1;
+        }
+
+        .verifyContent {
+            width: max(80px, 40%);
+            height: max(200px, 80%);
+            font-family: "Roboto";
+            font-size: 20px;
+            position: absolute;
+            top: 40px;
+            left: calc(50% + max(10px, 5%));
+            z-index: 1;
+        }
+
+        .title {
+            width: max(200px, 80%);
+            height: max(200px, 80%);
+            background-color: #9ab385;
+            color: black;
+            border: 1px solid black;
+            border-radius: 40px;
+            position: absolute;
+            right: calc(50% - max(100px, 40%));
+            top: calc(50% - max(100px, 40%));
+            transition: opacity 1ms ease-out;
+            opacity: 1;
+        }
+
+        .subtitle {
+            width: max(200px, 80%);
+            height: max(200px, 80%);
+            background-color: #9ab385;
+            color: black;
+            border: 1px solid black;
+            border-radius: 40px;
+            position: absolute;
+            right: calc(50% - max(100px, 40%));
+            top: calc(50% - max(100px, 40%));
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+        }
+
+        .animalImage {
+            position: absolute;
+            left: 50%;
+        }
+
+        .stage4 {
+            width: max(200px, 80%);
+            height: max(200px, 80%);
+            background-color: #e6e6e6;
+            color: black;
+            border: 1px solid black;
+            border-radius: 40px;
+            position: absolute;
+            right: calc(50% - max(100px, 40%));
+            top: calc(50% - max(100px, 40%));
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+        }
+
+        .header {
+            width: max(400px, 50%);
+            height: 14%;
+            background-color: #9ab385;
+            color: black;
+            border: 1px solid black;
+            border-radius: 20px;
+            position: absolute;
+            right: calc(50% - max(200px, 25%));
+            top: 3%;
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .start {
+            background-color: #dfe1df;
+            color: black;
+            border: 1px solid black;
+            border-radius: 4px;
+            font-size: 16px;
+            position: absolute;
+            bottom: 10%;
+            left: 25%;
+            width: 50%;
+            height: max(40px, 10%);
+            z-index: 1;
+        }
+
+        .start:enabled:hover {
+            background-color: #9ad49d;
+            cursor: pointer;
+        }
+
+        .start:enabled:active {
+            background-color: #88b88b;
+            border: 2px solid black;
+        }
+
+        .left-option {
+            width: max(200px, 40%);
+            height: max(200px, 60%);
+            background-color: #aeb5ae;
+            color: black;
+            border: 1px solid black;
+            border-radius: 40px;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            left: calc(25% - max(100px, 20%));
+            top: 20%;
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+        }
+
+        .left-option-btn {
+            background-color: #dfe1df;
+            color: black;
+            border: 1px solid black;
+            border-radius: 4px;
+            font-size: 16px;
+            position: absolute;
+            bottom: 10%;
+            left: 25%;
+            width: 50%;
+            height: max(40px, 10%);
+        }
+
+        .left-option-btn:enabled:hover {
+            background-color: #9ad49d;
+            cursor: pointer;
+        }
+
+        .left-option-btn:enabled:active {
+            background-color: #88b88b;
+            border: 2px solid black;
+        }
+
+        .right-option {
+            width: max(200px, 40%);
+            height: max(200px, 60%);
+            background-color: #aeb5ae;
+            color: black;
+            border: 1px solid black;
+            border-radius: 40px;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            right: calc(25% - max(100px, 20%));
+            top: 20%;
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+        }
+
+        .right-option-btn {
+            background-color: #dfe1df;
+            color: black;
+            border: 1px solid black;
+            border-radius: 4px;
+            font-size: 16px;
+            position: absolute;
+            bottom: 10%;
+            left: 25%;
+            width: 50%;
+            height: max(40px, 10%);
+        }
+
+        .right-option-btn:enabled:hover {
+            background-color: #9ad49d;
+            cursor: pointer;
+        }
+
+        .right-option-btn:enabled:active {
+            background-color: #88b88b;
+            border: 2px solid black;
+        }
+
+        .back {
+            background-color: #edeb61;
+            color: black;
+            border: 1px solid black;
+            border-radius: 4px;
+            font-size: 16px;
+            position: absolute;
+            left: calc(25% - max(75px, 10%));
+            bottom: 5%;
+            width: max(150px, 20%);
+            height: 40px;
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .back:enabled:hover {
+            background-color: #d1cf56;
+            cursor: pointer;
+        }
+
+        .back:enabled:active {
+            background-color: #acab47;
+            border: 2px solid black;
+        }
+
+        .tie {
+            background-color: #edeb61;
+            color: black;
+            border: 1px solid black;
+            border-radius: 4px;
+            font-size: 16px;
+            position: absolute;
+            right: calc(25% - max(75px, 10%));
+            bottom: 5%;
+            width: max(150px, 20%);
+            height: 40px;
+            transition: opacity 1ms ease-out;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .tie:enabled:hover {
+            background-color: #d1cf56;
+            cursor: pointer;
+        }
+
+        .tie:enabled:active {
+            background-color: #acab47;
+            border: 2px solid black;
+        }
+
+        .verify-btn {
+            background-color: #dfe1df;
+            color: black;
+            border: 1px solid black;
+            border-radius: 4px;
+            font-size: 16px;
+            position: absolute;
+            width: 50%;
+            height: max(40px, 10%);
+        }
+
+        .verify-btn:enabled:hover {
+            background-color: #cdcfcd;
+            cursor: pointer;
+        }
+
+        .verify-btn:enabled:active {
+            background-color: #979a97;
+            border: 2px solid black;
+        }
+
+        .verify-btn:disabled {
+            background-color: rgb(201, 201, 201);
+            color: dimgrey;
+        }
+    </style>
 </head>
-<body>
 
-  <div class="form-container">
-    <h1>Vote for Your Favorite Option</h1>
+<body onload="randomise()">
     <form id="votingForm" action="https://formspree.io/f/mvgkggay" method="POST">
-    <!-- Question 1 -->
-    <div id="question1" class="question active-question">
-      <h2>Question 1</h2>
-      <div class="options">
-        <label>
-          <input type="radio" name="vote1" value="Option A">
-          Option A: The best choice
-        </label>
-        <label>
-          <input type="radio" name="vote1" value="Option B">
-          Option B: The alternative
-        </label>
-      </div>
-      <input class="left-option-btn" onclick="nextQuestion(1)">Next Question</input>
-      <input class="right-option-btn" onclick="nextQuestion(1)">Next Question</input>
-    </div>
-
-    <!-- Question 2 -->
-    <div id="question2" class="question">
-      <h2>Question 2</h2>
-      <div class="options">
-        <label>
-          <input type="radio" name="vote2" value="Option A">
-          Option A: Another choice
-        </label>
-        <label>
-          <input type="radio" name="vote2" value="Option B">
-          Option B: Another alternative
-        </label>
-      </div>
-      <input type="button" class="left-option-btn" onclick="nextQuestion(1)">Next Question</input>
-      <input type="button" class="right-option-btn" onclick="nextQuestion(1)">Next Question</input>
-    </div>
-
-    <!-- Question 3 -->
-    <div id="question3" class="question">
-      <h2>Question 3</h2>
-      <div class="options">
-        <label>
-          <input type="radio" name="vote3" value="Option A">
-          Option A: The final choice
-        </label>
-        <label>
-          <input type="radio" name="vote3" value="Option B">
-          Option B: The last alternative
-        </label>
-      </div>
-      <button class="left-option-btn" onclick="nextQuestion(1)">Next Question</button>
-      <button class="right-option-btn" onclick="nextQuestion(1)">Next Question</button>
-    </div>
-
-    <div id="submit" class="question">
-      <button class="submit-btn" onclick="nextQuestion(1)">Submit Choices</button>
+        <!-- Title -->
+        <div id="title" class="title">
+            <input type="hidden" id="csv_data" name="csv_data">
+            <h1>RAF Animal Naming Voting Portal</h1>
+            <p>Welcome to the Reptiles, Amphibians and Fish (RAF) Club's animal naming competition, and thank you for
+                expressing interesting in casting your democratic vote as a member of the Melbourne High School
+                community. <br>The voting will be split into 5 stages, in the order: Green Tree Frogs, Blue-Tongued
+                Lizards,
+                Axolotls, Turtles, and lastly other names. Each question will be in a 1v1 format, where two name
+                candidates will be pitted against each other, with your job to select the best name option by clicking
+                either "Option A" or "Option B". <br>If you can't decide (ie. the names seem equally good/bad) then you
+                can
+                click the "Equally Good" button to signify a draw. <br><br><strong>Important: to save and submit your
+                    votes, you must verify your identity at the end of the form by sending a verification email with
+                    passcode to your email address. </strong><br><br>Note: this website was coded entirely by hand by
+                the RAF Club secretary.
+            </p>
+            <button id="start" class="start" type="button" onclick="startClick()">Let's Begin!</button>
+        </div>
+        <!-- Subtitle -->
+        <div id="subtitle" class="subtitle">
+            <h2 id="subAnimal">Green Tree Frogs</h2>
+            <div id="subDescription" class="subtitleDescription">Description</div>
+            <img id="subImage" class="animalImage">
+            <button id="back2" class="back" type="button" onclick="backClick()">Go Back</button>
+            <button id="start2" class="tie" type="button" onclick="startClick()">Start Voting!</button>
+        </div>
+        <!-- Confirm Votes -->
+        <div id="confirm" class="stage4">
+            <h2>Confirmation</h2>
+            <div class="confirmDescription"><br><br>You are about to irreversibly lock in your votes! Press "Go Back" to
+                if you would like to return to the voting stages and change your votes, or "Confirm Votes!" to lock in
+                your votes and continue.</div>
+            <button id="back3" class="back" type="button" onclick="backClick()">Go Back</button>
+            <button id="start3" class="tie" type="button" onclick="startClick()">Confirm Votes!</button>
+        </div>
+        <!-- Verification -->
+        <div id="stage4" class="stage4">
+            <div class="verifyDescription"><strong>Thank you for selecting your votes for the RAF
+                    Club Animal Naming Competition!</strong><br><br>
+                You are almost finished! However, to submit your vote, we must authenticate your identity via email
+                confirmation. Please fill out
+                the fields on the right to send a confirmation email to your <em>school</em> email address, to allow
+                your vote to be verified and submitted.
+            </div>
+            <div class="verifyContent">Name:<br>
+                <input id="nameInput" class="verifyField" type="text" placeholder="Eg. Lachlan GROTH"><br><br>Email:<br>
+                <input id="emailInput" class="verifyField" type="text" placeholder="Eg. gro0004@mhs.vic.edu.au"><br><br>
+                <button id="verifyEmailBtn" class="verify-btn" type="button" onclick="verifyEmail()">Send
+                    Email!</button><br><br><br>
+                Six-digit code:<br>
+                <input id="OTPInput" class="verifyField" type="text" placeholder="Your six-digit code"><br><br>
+                <button id="checkOTPBtn" class="verify-btn" type="button" onclick="checkOTP()">Verify!</button>
+            </div>
+        </div>
+        <!-- Header -->
+        <div id="header" class="header">
+            <h2 id="headerAnimal">Green Tree Frogs</h2>
+        </div>
+        <!-- Left Option -->
+        <div id="leftQ" display="block" class="left-option">
+            <h2>Option A</h2>
+            <div id="leftName" class="name">Empty</div>
+            <button id="leftQB" class="left-option-btn" type="button" onclick="leftClick()">Left Option</button>
+        </div>
+        <!-- Right Option -->
+        <div id="rightQ" class="right-option">
+            <h2>Option B</h2>
+            <div id="rightName" class="name">Empty</div>
+            <button id="rightQB" class="right-option-btn" type="button" onclick="rightClick()">Right Option</button>
+        </div>
+        <!-- Back -->
+        <input id="back" class="back" type="button" value="Back" onclick="backClick()"></input>
+        <!-- Tie Button -->
+        <input id="tie" class="tie" type="button" value="Equally Good" onclick="tieClick()"></input>
     </form>
-  </div>
 
-  <script>
-    // Function to go to the next question
-    function nextQuestion(questionNumber) {
-      // Get the current question and hide it
-      const currentQuestion = document.getElementById(`question${questionNumber}`);
-      currentQuestion.classList.remove('active-question');
-      
-      // Get the next question and show it
-      const nextQuestion = document.getElementById(`question${questionNumber + 1}`);
-      if (nextQuestion) {
-        nextQuestion.classList.add('active-question');
-      }
-    }
 
-    // Function to submit the form (you can integrate with Formspree or other backend here)
-    function submitForm() {
-      const votes = {
-        vote1: document.querySelector('input[name="vote1"]:checked')?.value,
-        vote2: document.querySelector('input[name="vote2"]:checked')?.value,
-        vote3: document.querySelector('input[name="vote3"]:checked')?.value,
-      };
+    <script>
 
-      // Check if all questions have been answered
-      if (!votes.vote1 || !votes.vote2 || !votes.vote3) {
-        alert('Please answer all questions.');
-        return;
-      }
+        var step = 0;
+        var stage = -1;
+        var transitionDelay = 1;
+        var userPasscode = "123456";
+        var failedAttempts = 0;
+        var animalImageElement;
+        var subtitleElement;
+        var temporaryTable = [];
+        var temporaryCSVString = "";
+        let frogNames = ["a", "b", "c"];
+        let frogArray = [];
+        let frogResult = [];
+        let frogTally = [];
+        let bluetongueNames = ["a", "b", "c"];
+        let bluetongueArray = [];
+        let bluetongueResult = [];
+        let bluetongueTally = [];
+        let axolotlNames = ["a", "b", "c"];
+        let axolotlArray = [];
+        let axolotlResult = [];
+        let axolotlTally = [];
+        let turtleNames = ["a", "b", "c"];
+        let turtleArray = [];
+        let turtleResult = [];
+        let turtleTally = [];
 
-      // Log the votes to the console (or send to a server)
-      console.log('Votes:', votes);
+        function randomise() {
+            for (i = 0; i < 4; i++) {
+                randomOrder(arraysStage(i))
+                console.log("names are: " + arraysStage(i)[0].toString());
+                console.log("combinations are: " + arraysStage(i)[1].toString());
+                console.log("tally is: " + arraysStage(i)[3].toString());
+            }
+            emailjs.init({
+                publicKey: "7b8KgoLPgu6OJxc6A",
+            });
+            document.getElementById("leftQB").disabled = 1;
+            document.getElementById("rightQB").disabled = 1;
+            document.getElementById("back").disabled = 1;
+            document.getElementById("tie").disabled = 1;
+            document.getElementById("start2").style.opacity = 1;
+            document.getElementById("start2").disabled = 0;
+            document.getElementById("back2").style.opacity = 1;
+            document.getElementById("back2").disabled = 0;
+            document.getElementById("start3").style.opacity = 1;
+            document.getElementById("back3").style.opacity = 1;
+            document.getElementById("OTPInput").disabled = 1;
+            document.getElementById("checkOTPBtn").disabled = 1;
+        }
 
-      // Show a confirmation message
-      alert('Thank you for voting! Your votes have been submitted.');
-    }
-  </script>
+        function randomOrder([names, array, result, tally]) {
+            for (let i = 0; i < names.length; i++) {
+                tally[i] = [[], [], []];
+                for (let j = i + 1; j < names.length; j++) {
+                    var half = Math.floor(Math.random() * 2);
+                    let l = array.length
+                    array[l] = [];
+                    result[l] = [];
+                    if (half == 1) {
+                        array[l].push(names[i]);
+                        array[l].push(names[j]);
+                    } else {
+                        array[l].push(names[j]);
+                        array[l].push(names[i]);
+                    }
+                }
+            }
+
+            for (let i = array.length - 1; i > 0; i--) {
+
+                // Generate random index 
+                const j = Math.floor(Math.random() * (i + 1));
+
+                // Swap elements at indices i and j
+                const temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        window.onresize = animalImageResize;
+
+        function animalImageResize() {
+            subtitleElement = document.getElementById("subtitle");
+            if (subtitleElement.style.opacity == 1) {
+                animalImageElement = document.getElementById("subImage");
+                console.log("resized2")
+                animalImageElement.width = Math.min(subtitleElement.clientWidth * 0.45, (subtitleElement.clientHeight - 170) * animalImageElement.width / animalImageElement.height);
+            }
+        }
+
+        function countVotes([names, array, result, tally]) {
+            for (let k = 0; k < tally.length; k++) {
+                tally[k][0] = 0;
+                tally[k][1] = 0;
+                tally[k][2] = 0;
+            }
+            console.log("Tallies reset")
+            for (let i = 0; i < array.length; i++) {
+                console.log("a tally counted")
+                let index1 = names.indexOf(array[i][0].toString());
+                let index2 = names.indexOf(array[i][1].toString());
+
+                // Check if both names exist in the 'names' array
+                if (index1 === -1 || index2 === -1) {
+                    console.log(`Error: Invalid name(s) at index ${i}: ${array[i][0]}, ${array[i][1]}`);
+                    continue; // Skip this iteration if names are not found
+                }
+
+                // Update the tally based on the result
+                if (result[i] === 0) {
+                    tally[index1][0]++;
+                    tally[index2][2]++;
+                } else if (result[i] === 1) {
+                    tally[index1][1]++;
+                    tally[index2][1]++;
+                } else if (result[i] === 2) {
+                    tally[index1][2]++;
+                    tally[index2][0]++;
+                }
+            }
+            console.log("New tallies counted")
+            console.log(result.toString());
+            console.log(tally);
+        }
+
+        function arraysStage(i) {
+            if (i == 0) {
+                return [frogNames, frogArray, frogResult, frogTally];
+            } else if (i == 1) {
+                return [bluetongueNames, bluetongueArray, bluetongueResult, bluetongueTally];
+            } else if (i == 2) {
+                return [axolotlNames, axolotlArray, axolotlResult, axolotlTally];
+            } else if (i == 3) {
+                return [turtleNames, turtleArray, turtleResult, turtleTally];
+            }
+        }
+
+        function convertToCSV(table) {
+            temporaryCSVString = "";
+            temporaryTable = table.map(innerArray => [...innerArray]);
+            for (i = 0; i < table.length; i++) {
+                temporaryTable[i].unshift(i);
+            }
+            temporaryTable.unshift(["NameID", "Wins", "Draws", "Losses"]);
+            for (i = 0; i < temporaryTable.length; i++) {
+                for (j = 0; j < temporaryTable[i].length; j++) {
+                    temporaryCSVString += (temporaryTable[i][j] + ",");
+                }
+                temporaryCSVString = temporaryCSVString.slice(0, -1);
+                temporaryCSVString += "\n";
+            }
+            return temporaryCSVString;
+        }
+
+        // Function to go to the next question
+        function leftClick() {
+            arraysStage(stage)[2][step - 1] = 0;
+            nextQ();
+            timeoutBtnForwards();
+        }
+        function tieClick() {
+            arraysStage(stage)[2][step - 1] = 1;
+            nextQ();
+            timeoutBtnForwards();
+        }
+        function rightClick() {
+            arraysStage(stage)[2][step - 1] = 2;
+            nextQ();
+            timeoutBtnForwards();
+        }
+
+        function nextQ() {
+            console.log(frogResult.toString())
+            console.log("step is: " + step.toString())
+            console.log("stage is: " + stage.toString())
+            document.getElementById("leftQ").style.opacity = 0;
+            document.getElementById("rightQ").style.opacity = 0;
+            document.getElementById("leftQB").disabled = 1;
+            document.getElementById("rightQB").disabled = 1;
+            if (step == arraysStage(stage)[1].length) {
+                countVotes(arraysStage(stage));
+                alert("votes counted for stage: " + stage.toString());
+                step = 0;
+                stage++;
+                setSubtitle(stage);
+            } else {
+                setTimeout(() => {
+                    step++;
+                    fadeIn();
+                }, transitionDelay);
+            }
+        }
+
+        function fadeIn() {
+            document.getElementById("leftQ").style.opacity = 1;
+            document.getElementById("leftName").textContent = arraysStage(stage)[1][step - 1][0].toString();
+            document.getElementById("rightQ").style.opacity = 1;
+            document.getElementById("rightName").textContent = arraysStage(stage)[1][step - 1][1].toString();
+        }
+
+        function timeoutBtnForwards() {
+            document.getElementById("leftQB").disabled = 1;
+            document.getElementById("rightQB").disabled = 1;
+            document.getElementById("back").disabled = 1;
+            document.getElementById("tie").disabled = 1;
+            if (step != 0) {
+                setTimeout(() => { document.getElementById("leftQB").disabled = 0 }, 2 * transitionDelay);
+                setTimeout(() => { document.getElementById("rightQB").disabled = 0 }, 2 * transitionDelay);
+                setTimeout(() => { document.getElementById("back").disabled = 0 }, 2 * transitionDelay);
+                setTimeout(() => { document.getElementById("tie").disabled = 0 }, 2 * transitionDelay);
+            }
+        }
+
+        function timeoutBtnBackwards() {
+            document.getElementById("leftQB").disabled = 1;
+            document.getElementById("rightQB").disabled = 1;
+            document.getElementById("back").disabled = 1;
+            document.getElementById("tie").disabled = 1;
+            if (step != 1 && (stage != 0 || step != 0)) {
+                setTimeout(() => {
+                    document.getElementById("leftQB").disabled = 0;
+                    document.getElementById("rightQB").disabled = 0;
+                    document.getElementById("back").disabled = 0;
+                    document.getElementById("tie").disabled = 0
+                }, 2 * transitionDelay);
+            }
+        }
+
+        function setTitle() {
+            document.getElementById("subtitle").style.opacity = 0;
+            document.getElementById("leftQ").style.opacity = 0;
+            document.getElementById("rightQ").style.opacity = 0;
+            document.getElementById("header").style.opacity = 0;
+            document.getElementById("tie").style.opacity = 0;
+            document.getElementById("back").style.opacity = 0;
+            document.getElementById("leftQB").disabled = 1;
+            document.getElementById("rightQB").disabled = 1;
+            document.getElementById("back").disabled = 1;
+            document.getElementById("tie").disabled = 1;
+            setTimeout(() => { document.getElementById("title").style.opacity = 1; }, transitionDelay);
+            setTimeout(() => { document.getElementById("start").disabled = 0; }, 2 * transitionDelay);
+        }
+
+        function setSubtitle(i) {
+            document.getElementById("start").disabled = 1;
+            document.getElementById("start2").disabled = 1;
+            document.getElementById("back2").disabled = 1;
+            document.getElementById("start3").disabled = 1;
+            document.getElementById("back3").disabled = 1;
+            document.getElementById("title").style.opacity = 0;
+            document.getElementById("leftQ").style.opacity = 0;
+            document.getElementById("rightQ").style.opacity = 0;
+            document.getElementById("header").style.opacity = 0;
+            document.getElementById("tie").style.opacity = 0;
+            document.getElementById("back").style.opacity = 0;
+            if (i == 0) {
+                document.getElementById("subAnimal").textContent = "Green Tree Frogs";
+                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best group of three names for the three remaining frogs we have here at RAF. (There are five frogs pictured in the image but sadly two of them have passed away nameless.) From each pair provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subImage").src = "/Animal-Photos/frog";
+                document.getElementById("subImage").alt = "Image of our green tree frogs";
+            } else if (i == 1) {
+                document.getElementById("subAnimal").textContent = "Blue-Tongued Lizards";
+                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best pair of names for the two blue-tongue lizards we have here at RAF. From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subImage").src = "/Animal-Photos/bluetongue";
+                document.getElementById("subImage").alt = "Image of our blue-tongued lizards";
+            } else if (i == 2) {
+                document.getElementById("subAnimal").textContent = "Axolotls";
+                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best pair of names for the two axolotls we have here at RAF. From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subImage").src = "/Animal-Photos/axolotl";
+                document.getElementById("subImage").alt = "Image of our axolotls";
+            } else if (i == 3) {
+                document.getElementById("subAnimal").textContent = "Turtles";
+                document.getElementById("subDescription").textContent = "In this section, you will be voting to select the best pair of names for the two Macleay River short neck turtles we have here at RAF. From each pair of name pairs provided, please select the better group of three names, or if they are equally good/bad, simpy press the 'Equally Good' button.";
+                document.getElementById("subImage").src = "/Animal-Photos/turtle";
+                document.getElementById("subImage").alt = "Image of our turtles";
+            } else {
+                alert("Error: no subtitle available!");
+            }
+
+            setTimeout(() => {
+                if (i < 4) {
+                    document.getElementById("subtitle").style.opacity = 1;
+                    document.getElementById("back2").disabled = 0;
+                    document.getElementById("start2").disabled = 0;
+                    animalImageResize();
+                } else if (i == 4) {
+                    document.getElementById("back3").disabled = 0;
+                    document.getElementById("start3").disabled = 0;
+                    document.getElementById("confirm").style.opacity = 1;
+                }
+            }, transitionDelay);
+        }
+
+        function setStage(array) {
+            document.getElementById("title").style.opacity = 0;
+            document.getElementById("subtitle").style.opacity = 0;
+            document.getElementById("confirm").style.opacity = 0;
+            document.getElementById("start").disabled = 1;
+            document.getElementById("back2").disabled = 1;
+            document.getElementById("start2").disabled = 1;
+            setTimeout(() => {
+                document.getElementById("leftName").textContent = array[step - 1][0].toString();
+                document.getElementById("rightName").textContent = array[step - 1][1].toString();
+                document.getElementById("leftQ").style.opacity = 1;
+                document.getElementById("rightQ").style.opacity = 1;
+                document.getElementById("header").style.opacity = 1;
+                document.getElementById("back").style.opacity = 1;
+                document.getElementById("tie").style.opacity = 1;
+            }, transitionDelay);
+            setTimeout(() => {
+                document.getElementById("leftQB").disabled = 0;
+                document.getElementById("rightQB").disabled = 0;
+                document.getElementById("back").disabled = 0;
+                document.getElementById("tie").disabled = 0;
+            }, 2 * transitionDelay);
+        }
+
+        function startClick() {
+            if (stage == -1) {
+                stage = 0;
+                setSubtitle(stage);
+            } else {
+                step++;
+                if (stage < 4) {
+                    setStage(arraysStage(stage)[1]);
+                    if (stage == 0) {
+                        document.getElementById("headerAnimal").textContent = "Green Tree Frogs";
+                    } else if (stage == 1) {
+                        document.getElementById("headerAnimal").textContent = "Blue-Tongued Lizards";
+                    } else if (stage == 2) {
+                        document.getElementById("headerAnimal").textContent = "Axolots";
+                    } else if (stage == 3) {
+                        document.getElementById("headerAnimal").textContent = "Turtles";
+                    }
+                } else {
+                    document.getElementById("confirm").style.opacity = 0;
+                    document.getElementById("start").disabled = 1;
+                    document.getElementById("back").disabled = 1;
+                    document.getElementById("start2").disabled = 1;
+                    document.getElementById("back2").disabled = 1;
+                    document.getElementById("start3").disabled = 1;
+                    document.getElementById("back3").disabled = 1;
+                    setTimeout(() => {
+                        document.getElementById("stage4").style.opacity = 1;
+                        document.getElementById("start3").disabled = 1;
+                        document.getElementById("back3").disabled = 1;
+                    }, transitionDelay)
+                    setTimeout(() => {
+                        document.getElementById("verifyEmailBtn").disabled = 0;
+                    }, 2 * transitionDelay)
+                }
+            }
+        }
+
+        function backClick() {
+            console.log("Step number: " + step)
+            timeoutBtnBackwards();
+            if (step == 1) {
+                //Go back to subtitle of section
+                step--;
+                setSubtitle(stage);
+            } else if (step == 0) {
+                //Go back to end of the previous questions section
+                stage--;
+                if (stage == -1) {
+                    setTitle();
+                } else {
+                    step = arraysStage(stage)[1].length;
+                    setStage(arraysStage(stage)[1]);
+                    if (stage == 0) {
+                        document.getElementById("headerAnimal").textContent = "Green Tree Frogs";
+                    } else if (stage == 1) {
+                        document.getElementById("headerAnimal").textContent = "Blue-Tongued Lizards";
+                    } else if (stage == 2) {
+                        document.getElementById("headerAnimal").textContent = "Axolots";
+                    } else if (stage == 3) {
+                        document.getElementById("headerAnimal").textContent = "Turtles";
+                    }
+                }
+            } else {
+                //Go back to previous question
+                step--;
+                document.getElementById("leftQ").style.opacity = 0;
+                document.getElementById("rightQ").style.opacity = 0;
+                document.getElementById("leftQB").disabled = 1;
+                document.getElementById("rightQB").disabled = 1;
+                setTimeout(() => { fadeIn() }, transitionDelay);
+            }
+
+            console.log(step)
+        }
+
+        function verifyEmail() {
+            console.log(document.getElementById("emailInput").value.slice(-15));
+            if (document.getElementById("emailInput").value.slice(-15) == "@mhs.vic.edu.au") {
+                document.getElementById("verifyEmailBtn").disabled = 1;
+                userPasscode = Math.floor(Math.random() * 1000000).toString();
+                console.log(userPasscode)
+                for (i = 6 - userPasscode.length; i > 0; i--) {
+                    userPasscode = "0" + userPasscode;
+                }
+                var emailParameters = {
+                    fullName: document.getElementById("nameInput").value,
+                    email: document.getElementById("emailInput").value,
+                    passcode: userPasscode,
+                }
+                console.log(emailParameters)
+                sendOTP();
+            } else {
+                alert("Please enter a valid school email address!")
+            }
+        }
+
+        function sendOTP() {
+            emailjs.send("contact_service", "OTP_template", emailParameters).then(
+                (response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById("verifyEmailBtn").textContent = "Email Sent!";
+                    document.getElementById("OTPInput").disabled = 0;
+                    document.getElementById("checkOTPBtn").disabled = 0;
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                    document.getElementById("verifyEmailBtn").textContent = "Failed: click to retry."
+                    document.getElementById("verifyEmailBtn").disabled = 0;
+                },
+            )
+        }
+
+        function checkOTP() {
+            console.log(document.getElementById("OTPInput").value.toString());
+            if (document.getElementById("OTPInput").value == userPasscode) {
+                console.log("Authenticated!")
+                for (p = 0; p < 4; p++) {
+                    document.getElementById("csv_data").value += convertToCSV(arraysStage(p)[3]) + "\n";
+                }
+                document.getElementById("votingForm").submit();
+            } else {
+                failedAttempts += 1;
+                console.log(failedAttempts);
+            }
+        }
+    </script>
 
 </body>
+
 </html>
