@@ -113,7 +113,7 @@
             position: absolute;
             right: calc(50% - max(100px, 40%));
             top: calc(50% - max(100px, 40%));
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 1;
         }
 
@@ -127,7 +127,7 @@
             position: absolute;
             right: calc(50% - max(100px, 40%));
             top: calc(50% - max(100px, 40%));
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
         }
 
@@ -146,7 +146,7 @@
             position: absolute;
             right: calc(50% - max(100px, 40%));
             top: calc(50% - max(100px, 40%));
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
         }
 
@@ -160,7 +160,7 @@
             position: absolute;
             right: calc(50% - max(200px, 25%));
             top: 3%;
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
             display: flex;
             justify-content: center;
@@ -204,7 +204,7 @@
             position: absolute;
             left: calc(25% - max(100px, 20%));
             top: 20%;
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
         }
 
@@ -244,7 +244,7 @@
             position: absolute;
             right: calc(25% - max(100px, 20%));
             top: 20%;
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
         }
 
@@ -282,7 +282,7 @@
             bottom: 5%;
             width: max(150px, 20%);
             height: 40px;
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
             z-index: 1;
         }
@@ -308,7 +308,7 @@
             bottom: 5%;
             width: max(150px, 20%);
             height: 40px;
-            transition: opacity 1ms ease-out;
+            transition: opacity 500ms ease-out;
             opacity: 0;
             z-index: 1;
         }
@@ -428,17 +428,12 @@
     <input id="back" class="back" type="button" value="Back" onclick="backClick()"></input>
     <!-- Tie Button -->
     <input id="tie" class="tie" type="button" value="Equally Good" onclick="tieClick()"></input>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>emailjs.init({
-            publicKey: "7b8KgoLPgu6OJxc6A",
-        });
-    </script>
 
     <script>
 
         var step = 0;
         var stage = -1;
-        var transitionDelay = 1;
+        var transitionDelay = 500;
         var userPasscode = "123456";
         var failedAttempts = 0;
         var animalImageElement;
