@@ -443,6 +443,7 @@
         var subtitleElement;
         var temporaryTable = [];
         var temporaryCSVString = "";
+        let emailParameters;
         let frogNames = ["Louie, Kermit and Wazowski", "Riberto, Kale and Basil", "Matcha, Sencha and Bancha", "Pepe, Mehmet and Tiddalick", "Luigi, Yoshi and Toad", "Frankie, Pobble and Kermit"]
         let frogArray = [];
         let frogResult = [];
@@ -842,7 +843,7 @@
                 for (i = 6 - userPasscode.length; i > 0; i--) {
                     userPasscode = "0" + userPasscode;
                 }
-                var emailParameters = {
+                emailParameters = {
                     fullName: document.getElementById("nameInput").value,
                     email: document.getElementById("emailInput").value,
                     passcode: userPasscode,
