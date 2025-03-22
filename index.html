@@ -352,86 +352,82 @@
 </head>
 
 <body onload="randomise()">
-    <form id="votingForm" action="https://formsubmit.co/65e0c6812a5f00a260a37e1cf84f1a71" method="POST">
-        <!-- Title -->
-        <div id="title" class="title">
-            <input type="hidden" id="csv_data" name="csv_data">
-            <h1>RAF Animal Naming Voting Portal</h1>
-            <p>Welcome to the Reptiles, Amphibians and Fish (RAF) Club's animal naming competition, and thank you for
-                expressing interesting in casting your democratic vote as a member of the Melbourne High School
-                community. <br>The voting will be split into 5 stages, in the order: Green Tree Frogs, Blue-Tongued
-                Lizards,
-                Axolotls, Turtles, and lastly other names. Each question will be in a 1v1 format, where two name
-                candidates will be pitted against each other, with your job to select the best name option by clicking
-                either "Option A" or "Option B". <br>If you can't decide (ie. the names seem equally good/bad) then you
-                can
-                click the "Equally Good" button to signify a draw. <br><br><strong>Important: to save and submit your
-                    votes, you must verify your identity at the end of the form by sending a verification email with
-                    passcode to your email address. </strong><br><br>Note: this website was coded entirely by hand by
-                the RAF Club secretary.
-            </p>
-            <button id="start" class="start" type="button" onclick="startClick()">Let's Begin!</button>
+    <!-- Title -->
+    <div id="title" class="title">
+        <input type="hidden" id="csv_data">
+        <h1>RAF Animal Naming Voting Portal</h1>
+        <p>Welcome to the Reptiles, Amphibians and Fish (RAF) Club's animal naming competition, and thank you for
+            expressing interesting in casting your democratic vote as a member of the Melbourne High School
+            community. <br>The voting will be split into 5 stages, in the order: Green Tree Frogs, Blue-Tongued
+            Lizards,
+            Axolotls, Turtles, and lastly other names. Each question will be in a 1v1 format, where two name
+            candidates will be pitted against each other, with your job to select the best name option by clicking
+            either "Option A" or "Option B". <br>If you can't decide (ie. the names seem equally good/bad) then you
+            can
+            click the "Equally Good" button to signify a draw. <br><br><strong>Important: to save and submit your
+                votes, you must verify your identity at the end of the form by sending a verification email with
+                passcode to your email address. </strong><br><br>Note: this website was coded entirely by hand by
+            the RAF Club secretary.
+        </p>
+        <button id="start" class="start" type="button" onclick="startClick()">Let's Begin!</button>
+    </div>
+    <!-- Subtitle -->
+    <div id="subtitle" class="subtitle">
+        <h2 id="subAnimal">Green Tree Frogs</h2>
+        <div id="subDescription" class="subtitleDescription">Description</div>
+        <img id="subImage" class="animalImage">
+        <button id="back2" class="back" type="button" onclick="backClick()">Go Back</button>
+        <button id="start2" class="tie" type="button" onclick="startClick()">Start Voting!</button>
+    </div>
+    <!-- Confirm Votes -->
+    <div id="confirm" class="stage4">
+        <h2>Confirmation</h2>
+        <div class="confirmDescription"><br><br>You are about to irreversibly lock in your votes! Press "Go Back" to
+            if you would like to return to the voting stages and change your votes, or "Confirm Votes!" to lock in
+            your votes and continue.</div>
+        <button id="back3" class="back" type="button" onclick="backClick()">Go Back</button>
+        <button id="start3" class="tie" type="button" onclick="startClick()">Confirm Votes!</button>
+    </div>
+    <!-- Verification -->
+    <div id="stage4" class="stage4">
+        <div class="verifyDescription"><strong>Thank you for selecting your votes for the RAF
+                Club Animal Naming Competition!</strong><br><br>
+            You are almost finished! However, to submit your vote, we must authenticate your identity via email
+            confirmation. Please fill out
+            the fields on the right to send a confirmation email to your <em>school</em> email address, to allow
+            your vote to be verified and submitted.
         </div>
-        <!-- Subtitle -->
-        <div id="subtitle" class="subtitle">
-            <h2 id="subAnimal">Green Tree Frogs</h2>
-            <div id="subDescription" class="subtitleDescription">Description</div>
-            <img id="subImage" class="animalImage">
-            <button id="back2" class="back" type="button" onclick="backClick()">Go Back</button>
-            <button id="start2" class="tie" type="button" onclick="startClick()">Start Voting!</button>
+        <div class="verifyContent">Name:<br>
+            <input id="nameInput" class="verifyField" type="text" placeholder="Eg. Lachlan GROTH"><br><br>Email:<br>
+            <input id="emailInput" class="verifyField" type="text" placeholder="Eg. gro0004@mhs.vic.edu.au"><br><br>
+            <button id="verifyEmailBtn" class="verify-btn" type="button" onclick="verifyEmail()">Send
+                Email!</button><br><br><br>
+            Six-digit code:<br>
+            <input id="OTPInput" class="verifyField" type="text" placeholder="Your six-digit code"><br><br>
+            <button id="checkOTPBtn" class="verify-btn" type="button" onclick="checkOTP()">Verify!</button>
         </div>
-        <!-- Confirm Votes -->
-        <div id="confirm" class="stage4">
-            <h2>Confirmation</h2>
-            <div class="confirmDescription"><br><br>You are about to irreversibly lock in your votes! Press "Go Back" to
-                if you would like to return to the voting stages and change your votes, or "Confirm Votes!" to lock in
-                your votes and continue.</div>
-            <button id="back3" class="back" type="button" onclick="backClick()">Go Back</button>
-            <button id="start3" class="tie" type="button" onclick="startClick()">Confirm Votes!</button>
-        </div>
-        <!-- Verification -->
-        <div id="stage4" class="stage4">
-            <div class="verifyDescription"><strong>Thank you for selecting your votes for the RAF
-                    Club Animal Naming Competition!</strong><br><br>
-                You are almost finished! However, to submit your vote, we must authenticate your identity via email
-                confirmation. Please fill out
-                the fields on the right to send a confirmation email to your <em>school</em> email address, to allow
-                your vote to be verified and submitted.
-            </div>
-            <div class="verifyContent">Name:<br>
-                <input id="nameInput" class="verifyField" type="text" placeholder="Eg. Lachlan GROTH"
-                    name="Name"><br><br>Email:<br>
-                <input id="emailInput" class="verifyField" type="text" placeholder="Eg. gro0004@mhs.vic.edu.au"
-                    name="Email"><br><br>
-                <button id="verifyEmailBtn" class="verify-btn" type="button" onclick="verifyEmail()">Send
-                    Email!</button><br><br><br>
-                Six-digit code:<br>
-                <input id="OTPInput" class="verifyField" type="text" placeholder="Your six-digit code"><br><br>
-                <button id="checkOTPBtn" class="verify-btn" type="button" onclick="checkOTP()">Verify!</button>
-            </div>
-        </div>
-        <!-- Header -->
-        <div id="header" class="header">
-            <h2 id="headerAnimal">Green Tree Frogs</h2>
-        </div>
-        <!-- Option A is better -->
-        <div id="leftQ" display="block" class="left-option">
-            <h2>Option A</h2>
-            <div id="leftName" class="name">Empty</div>
-            <button id="leftQB" class="left-option-btn" type="button" onclick="leftClick()">Option A is better</button>
-        </div>
-        <!-- Option B is better -->
-        <div id="rightQ" class="right-option">
-            <h2>Option B</h2>
-            <div id="rightName" class="name">Empty</div>
-            <button id="rightQB" class="right-option-btn" type="button" onclick="rightClick()">Option B is
-                better</button>
-        </div>
-        <!-- Back -->
-        <input id="back" class="back" type="button" value="Back" onclick="backClick()"></input>
-        <!-- Tie Button -->
-        <input id="tie" class="tie" type="button" value="Equally Good" onclick="tieClick()"></input>
-    </form>
+    </div>
+    <!-- Header -->
+    <div id="header" class="header">
+        <h2 id="headerAnimal">Green Tree Frogs</h2>
+    </div>
+    <!-- Option A is better -->
+    <div id="leftQ" display="block" class="left-option">
+        <h2>Option A</h2>
+        <div id="leftName" class="name">Empty</div>
+        <button id="leftQB" class="left-option-btn" type="button" onclick="leftClick()">Option A is better</button>
+    </div>
+    <!-- Option B is better -->
+    <div id="rightQ" class="right-option">
+        <h2>Option B</h2>
+        <div id="rightName" class="name">Empty</div>
+        <button id="rightQB" class="right-option-btn" type="button" onclick="rightClick()">Option B is
+            better</button>
+    </div>
+    <!-- Back -->
+    <input id="back" class="back" type="button" value="Back" onclick="backClick()"></input>
+    <!-- Tie Button -->
+    <input id="tie" class="tie" type="button" value="Equally Good" onclick="tieClick()"></input>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>emailjs.init({
             publicKey: "7b8KgoLPgu6OJxc6A",
@@ -449,7 +445,7 @@
         var subtitleElement;
         var temporaryTable = [];
         var temporaryCSVString = "";
-        let emailParameters;
+        var csvData = "";
         let frogNames = ["Louie, Kermit and Wazowski", "Riberto, Kale and Basil", "Matcha, Sencha and Bancha", "Pepe, Mehmet and Tiddalick", "Luigi, Yoshi and Toad", "Frankie, Pobble and Kermit"]
         let frogArray = [];
         let frogResult = [];
@@ -596,7 +592,8 @@
                 for (j = 0; j < temporaryTable[i].length; j++) {
                     temporaryCSVString += (temporaryTable[i][j] + ".");
                 }
-                temporaryCSVString += "...";
+                temporaryCSVString = temporaryCSVString.slice(0, -1);
+                temporaryCSVString += "/...";
             }
             return temporaryCSVString;
         }
@@ -859,18 +856,12 @@
             const email = document.getElementById("emailInput").value;
             const passcode = userPasscode;
 
-            const OTPMessage = `
-                <h2>One-Time Password</h2>
-                <p>Hello, <strong>${fullName}</strong>. To authenticate your vote, please use the following One Time Password (OTP):</p>
-                <h1>${passcode}</h1>
-                <p>Do not share this OTP with anyone. If you didn't make this request, you can safely ignore this email.<br>The Reptiles, Amphibians and Fish Club (RAF) will never contact you about this email or ask for any login codes or links. Beware of phishing scams.<br><br>Thank you for voting in the RAF Club Animal Naming Competition. Please remember that you must <strong>verify your identity to make your vote count</strong> by submitting the OTP into the correct field!<br><br>If you did not request this code, you can safely ignore this email.</p>`;
-
             fetch("/.netlify/functions/send-email", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ fullName, email, passcode })
+                body: JSON.stringify({ emailType: "otp", fullName, email, passcode })
 
             })
                 .then(response => {
@@ -903,15 +894,34 @@
                 if (document.getElementById("OTPInput").value == userPasscode) {
                     console.log("Authenticated!")
                     for (p = 0; p < 4; p++) {
-                        document.getElementById("csv_data").value += convertToCSV(arraysStage(p)[3]);
+                        csvData += convertToCSV(arraysStage(p)[3]);
                     }
                     document.getElementById("checkOTPBtn").disabled = 1;
-                    document.getElementById("votingForm").submit();
+                    sendVote();
                 } else {
                     failedAttempts += 1;
                     console.log(failedAttempts);
                 }
             }
+        }
+
+        function sendVote() {
+            fetch("/.netlify/functions/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ emailType: "VotingResult", fullName, email, csvData })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("OTPInput").disabled = 1;
+                        document.getElementById("checkOTPBtn").disabled = 1;
+                        alert("Your vote has been submitted successfully: you may now safely close this tab!");
+                    } else {
+                        alert("Error submitting vote: please try again.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
         }
     </script>
 
