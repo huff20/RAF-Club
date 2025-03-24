@@ -493,11 +493,7 @@
             }
 
             for (let i = array.length - 1; i > 0; i--) {
-
-                // Generate random index 
                 const j = Math.floor(Math.random() * (i + 1));
-
-                // Swap elements at indices i and j
                 const temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
@@ -523,14 +519,11 @@
             for (let i = 0; i < array.length; i++) {
                 let index1 = names.indexOf(array[i][0].toString());
                 let index2 = names.indexOf(array[i][1].toString());
-
-                // Check if both names exist in the 'names' array
                 if (index1 === -1 || index2 === -1) {
                     console.log(`Error: Invalid name(s) at index ${i}: ${array[i][0]}, ${array[i][1]}`);
-                    continue; // Skip this iteration if names are not found
+                    continue; 
                 }
 
-                // Update the tally based on the result
                 if (result[i] === 0) {
                     tally[index1][0]++;
                     tally[index2][2]++;
