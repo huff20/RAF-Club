@@ -196,7 +196,7 @@
             height: max(200px, 60%);
             background-color: #aeb5ae;
             color: black;
-            border: 1px solid black;
+            outline: 1px solid black;
             border-radius: 40px;
             font-size: 16px;
             display: flex;
@@ -206,28 +206,16 @@
             top: 20%;
             transition: opacity 500ms ease-out;
             opacity: 0;
+            z-index: 1;
         }
 
-        .left-option-btn {
-            background-color: #dfe1df;
-            color: black;
-            border: 1px solid black;
-            border-radius: 4px;
-            font-size: 16px;
-            position: absolute;
-            bottom: 10%;
-            left: 25%;
-            width: 50%;
-            height: max(40px, 10%);
-        }
-
-        .left-option-btn:enabled:hover {
-            background-color: #9ad49d;
+        .left-option:enabled:hover {
+            background-color: #a4afa4;
             cursor: pointer;
         }
 
-        .left-option-btn:enabled:active {
-            background-color: #88b88b;
+        .left-option:enabled:active {
+            background-color: #86ac86;
             border: 2px solid black;
         }
 
@@ -236,7 +224,7 @@
             height: max(200px, 60%);
             background-color: #aeb5ae;
             color: black;
-            border: 1px solid black;
+            outline: 1px solid black;
             border-radius: 40px;
             font-size: 16px;
             display: flex;
@@ -248,28 +236,17 @@
             opacity: 0;
         }
 
-        .right-option-btn {
-            background-color: #dfe1df;
-            color: black;
-            border: 1px solid black;
-            border-radius: 4px;
-            font-size: 16px;
-            position: absolute;
-            bottom: 10%;
-            left: 25%;
-            width: 50%;
-            height: max(40px, 10%);
-        }
 
-        .right-option-btn:enabled:hover {
-            background-color: #9ad49d;
+        .right-option:enabled:hover {
+            background-color: #a4afa4;
             cursor: pointer;
         }
 
-        .right-option-btn:enabled:active {
-            background-color: #88b88b;
+        .right-option:enabled:active {
+            background-color: #86ac86;
             border: 2px solid black;
         }
+
 
         .back {
             background-color: #edeb61;
@@ -360,7 +337,7 @@
             expressing interesting in casting your democratic vote as a member of the Melbourne High School
             community. <br>The voting will be split into 5 stages, in the order: Green Tree Frogs, Blue-Tongued
             Lizards,
-            Axolotls, and lastly Turtles. Each question will be in a 1v1 format, where two name
+            Axolotls, Turtles, and lastly other names. Each question will be in a 1v1 format, where two name
             candidates will be pitted against each other, with your job to select the best name option by clicking
             either "Option A" or "Option B". <br>If you can't decide (ie. the names seem equally good/bad) then you
             can
@@ -412,17 +389,14 @@
         <h2 id="headerAnimal">Green Tree Frogs</h2>
     </div>
     <!-- Option A is better -->
-    <div id="leftQ" display="block" class="left-option">
+    <div id="leftQ" display="block" class="left-option" onclick="leftClick()">
         <h2>Option A</h2>
         <div id="leftName" class="name">Empty</div>
-        <button id="leftQB" class="left-option-btn" type="button" onclick="leftClick()">Option A is better</button>
     </div>
     <!-- Option B is better -->
-    <div id="rightQ" class="right-option">
+    <div id="rightQ" class="right-option" onclick="rightClick()">
         <h2>Option B</h2>
         <div id="rightName" class="name">Empty</div>
-        <button id="rightQB" class="right-option-btn" type="button" onclick="rightClick()">Option B is
-            better</button>
     </div>
     <!-- Back -->
     <input id="back" class="back" type="button" value="Back" onclick="backClick()"></input>
@@ -433,6 +407,8 @@
 
         var step = 0;
         var stage = -1;
+        let LeftQTimedOut = 1;
+        let RightQTimedOut = 1;
         var transitionDelay = 500;
         var userPasscode = "123456";
         var failedAttempts = 0;
@@ -462,8 +438,9 @@
             for (i = 0; i < 4; i++) {
                 randomOrder(arraysStage(i))
             }
-            document.getElementById("leftQB").disabled = 1;
-            document.getElementById("rightQB").disabled = 1;
+            LeftQTimedOut = 1;
+            RightQTimedOut = 1;
+            RightQTimedOut = 1;
             document.getElementById("back").disabled = 1;
             document.getElementById("tie").disabled = 1;
             document.getElementById("start2").style.opacity = 1;
@@ -586,9 +563,18 @@
 
         // Function to go to the next question
         function leftClick() {
-            arraysStage(stage)[2][step - 1] = 0;
-            nextQ();
-            timeoutBtnForwards();
+            if (LeftQTimedOut == 0) {
+                arraysStage(stage)[2][step - 1] = 0;
+                nextQ();
+                timeoutBtnForwards();
+                const clickableLeftQ = document.getElementById("leftQ");
+                clickableLeftQ.style.backgroundColor = "#86ac86";
+                clickableLeftQ.style.outline = "2px solid black";
+                setTimeout(() => {
+                    clickableLeftQ.style.backgroundColor = "#aeb5ae";
+                    clickableLeftQ.style.outline = "1px solid black";
+                }, 100);
+            }
         }
         function tieClick() {
             arraysStage(stage)[2][step - 1] = 1;
@@ -596,16 +582,25 @@
             timeoutBtnForwards();
         }
         function rightClick() {
-            arraysStage(stage)[2][step - 1] = 2;
-            nextQ();
-            timeoutBtnForwards();
+            if (RightQTimedOut == 0) {
+                arraysStage(stage)[2][step - 1] = 2;
+                nextQ();
+                timeoutBtnForwards();
+                const clickableRightQ = document.getElementById("rightQ");
+                clickableRightQ.style.backgroundColor = "#86ac86";
+                clickableRightQ.style.outline = "2px solid black";
+                setTimeout(() => {
+                    clickableRightQ.style.backgroundColor = "#aeb5ae";
+                    clickableRightQ.style.outline = "1px solid black";
+                }, 100);
+            }
         }
 
         function nextQ() {
             document.getElementById("leftQ").style.opacity = 0;
             document.getElementById("rightQ").style.opacity = 0;
-            document.getElementById("leftQB").disabled = 1;
-            document.getElementById("rightQB").disabled = 1;
+            LeftQTimedOut = 1;
+            RightQTimedOut = 1;
             if (step == arraysStage(stage)[1].length) {
                 countVotes(arraysStage(stage));
                 step = 0;
@@ -627,27 +622,27 @@
         }
 
         function timeoutBtnForwards() {
-            document.getElementById("leftQB").disabled = 1;
-            document.getElementById("rightQB").disabled = 1;
+            LeftQTimedOut = 1;
+            RightQTimedOut = 1;
             document.getElementById("back").disabled = 1;
             document.getElementById("tie").disabled = 1;
             if (step != 0) {
-                setTimeout(() => { document.getElementById("leftQB").disabled = 0 }, 2 * transitionDelay);
-                setTimeout(() => { document.getElementById("rightQB").disabled = 0 }, 2 * transitionDelay);
+                setTimeout(() => { LeftQTimedOut = 0 }, 2 * transitionDelay);
+                setTimeout(() => { RightQTimedOut = 0 }, 2 * transitionDelay);
                 setTimeout(() => { document.getElementById("back").disabled = 0 }, 2 * transitionDelay);
                 setTimeout(() => { document.getElementById("tie").disabled = 0 }, 2 * transitionDelay);
             }
         }
 
         function timeoutBtnBackwards() {
-            document.getElementById("leftQB").disabled = 1;
-            document.getElementById("rightQB").disabled = 1;
+            LeftQTimedOut = 1;
+            RightQTimedOut = 1;
             document.getElementById("back").disabled = 1;
             document.getElementById("tie").disabled = 1;
             if (step != 1 && (stage != 0 || step != 0)) {
                 setTimeout(() => {
-                    document.getElementById("leftQB").disabled = 0;
-                    document.getElementById("rightQB").disabled = 0;
+                    LeftQTimedOut = 0;
+                    RightQTimedOut = 0;
                     document.getElementById("back").disabled = 0;
                     document.getElementById("tie").disabled = 0
                 }, 2 * transitionDelay);
@@ -661,8 +656,8 @@
             document.getElementById("header").style.opacity = 0;
             document.getElementById("tie").style.opacity = 0;
             document.getElementById("back").style.opacity = 0;
-            document.getElementById("leftQB").disabled = 1;
-            document.getElementById("rightQB").disabled = 1;
+            LeftQTimedOut = 1;
+            RightQTimedOut = 1;
             document.getElementById("back").disabled = 1;
             document.getElementById("tie").disabled = 1;
             setTimeout(() => { document.getElementById("title").style.opacity = 1; }, transitionDelay);
@@ -708,11 +703,15 @@
                     document.getElementById("subtitle").style.opacity = 1;
                     document.getElementById("back2").disabled = 0;
                     document.getElementById("start2").disabled = 0;
+                    document.getElementById("leftQ").style.zIndex = "0";
+                    document.getElementById("rightQ").style.zIndex = "0";
                     animalImageResize();
                 } else if (i == 4) {
                     document.getElementById("back3").disabled = 0;
                     document.getElementById("start3").disabled = 0;
                     document.getElementById("confirm").style.opacity = 1;
+                    document.getElementById("leftQ").style.zIndex = "0";
+                    document.getElementById("rightQ").style.zIndex = "0";
                 }
             }, transitionDelay);
         }
@@ -729,13 +728,15 @@
                 document.getElementById("rightName").textContent = array[step - 1][1].toString();
                 document.getElementById("leftQ").style.opacity = 1;
                 document.getElementById("rightQ").style.opacity = 1;
+                document.getElementById("leftQ").style.zIndex = "1";
+                document.getElementById("rightQ").style.zIndex = "1";
                 document.getElementById("header").style.opacity = 1;
                 document.getElementById("back").style.opacity = 1;
                 document.getElementById("tie").style.opacity = 1;
             }, transitionDelay);
             setTimeout(() => {
-                document.getElementById("leftQB").disabled = 0;
-                document.getElementById("rightQB").disabled = 0;
+                LeftQTimedOut = 0;
+                RightQTimedOut = 0;
                 document.getElementById("back").disabled = 0;
                 document.getElementById("tie").disabled = 0;
             }, 2 * transitionDelay);
@@ -807,11 +808,10 @@
                 step--;
                 document.getElementById("leftQ").style.opacity = 0;
                 document.getElementById("rightQ").style.opacity = 0;
-                document.getElementById("leftQB").disabled = 1;
-                document.getElementById("rightQB").disabled = 1;
+                LeftQTimedOut = 1;
+                RightQTimedOut = 1;
                 setTimeout(() => { fadeIn() }, transitionDelay);
             }
-
         }
 
         function verifyEmail() {
