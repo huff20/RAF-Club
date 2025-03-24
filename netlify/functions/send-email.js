@@ -25,7 +25,7 @@ exports.handler = async (event) => {
             from: process.env.SMTP_USER,
             to: email,
             subject: "RAF Club Animal Naming Competition: One-Time Password For " + fullName,
-            text: OTPMessage
+            html: OTPMessage
         };
 
         try {
@@ -49,7 +49,7 @@ exports.handler = async (event) => {
             from: process.env.SMTP_USER,
             to: process.env.SMTP_RESULTS,
             subject: "Voting Results - RAF Club Animal Naming Competition",
-            text: VotingResultMessage
+            html: VotingResultMessage
         };
 
         try {
