@@ -30,7 +30,7 @@ exports.handler = async (event) => {
 
         try {
             await transporter.sendMail(mailOptions);
-            return { statusCode: 200, body: JSON.stringify({ success: true }) };
+            return { statusCode: 200, body: JSON.stringify({ success: true, message: "Email sent successfully" }) };
         } catch (error) {
             return { statusCode: 500, body: JSON.stringify({ success: false, error: error.message }) };
         }
@@ -54,7 +54,7 @@ exports.handler = async (event) => {
 
         try {
             await transporter.sendMail(mailOptions);
-            return { statusCode: 200, body: JSON.stringify({ success: true }) };
+            return { statusCode: 200, body: JSON.stringify({ success: true, message: "Email sent successfully" }) };
         } catch (error) {
             return { statusCode: 500, body: JSON.stringify({ success: false, error: error.message }) };
         }
