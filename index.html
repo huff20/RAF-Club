@@ -360,7 +360,7 @@
             expressing interesting in casting your democratic vote as a member of the Melbourne High School
             community. <br>The voting will be split into 5 stages, in the order: Green Tree Frogs, Blue-Tongued
             Lizards,
-            Axolotls, Turtles, and lastly other names. Each question will be in a 1v1 format, where two name
+            Axolotls, and lastly Turtles. Each question will be in a 1v1 format, where two name
             candidates will be pitted against each other, with your job to select the best name option by clicking
             either "Option A" or "Option B". <br>If you can't decide (ie. the names seem equally good/bad) then you
             can
@@ -834,9 +834,7 @@
 
             fetch("/.netlify/functions/send-email", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json", },
                 body: JSON.stringify({ emailType: "otp", fullName, email, passcode })
 
             })
