@@ -183,12 +183,14 @@
 
         .start:enabled:hover {
             background-color: #9ad49d;
-            cursor: pointer;
+            border: 2px solid dimgray;
+            cursor: crosshair;
         }
 
         .start:enabled:active {
             background-color: #88b88b;
-            border: 2px solid black;
+            border: 2px solid dimgray;
+            outline: 2px solid black;
         }
 
         .left-option {
@@ -209,14 +211,15 @@
             z-index: 1;
         }
 
-        .left-option:enabled:hover {
-            background-color: #a4afa4;
-            cursor: pointer;
+        .left-option:hover {
+            background-color: #92a392;
+            outline: 3px solid black;
+            cursor: crosshair;
         }
 
-        .left-option:enabled:active {
-            background-color: #86ac86;
-            border: 2px solid black;
+        .left-option:active {
+            background-color: #8bbd8b;
+            outline: 6px solid black;
         }
 
         .right-option {
@@ -236,17 +239,16 @@
             opacity: 0;
         }
 
-
-        .right-option:enabled:hover {
-            background-color: #a4afa4;
-            cursor: pointer;
+        .right-option:hover {
+            background-color: #92a392;
+            outline: 3px solid black;
+            cursor: crosshair;
         }
 
-        .right-option:enabled:active {
-            background-color: #86ac86;
-            border: 2px solid black;
+        .right-option:active {
+            background-color: #8bbd8b;
+            outline: 6px solid black;
         }
-
 
         .back {
             background-color: #edeb61;
@@ -266,12 +268,14 @@
 
         .back:enabled:hover {
             background-color: #d1cf56;
-            cursor: pointer;
+            border: 2px solid dimgray;
+            cursor: crosshair;
         }
 
         .back:enabled:active {
             background-color: #acab47;
-            border: 2px solid black;
+            border: 2px solid dimgray;
+            outline: 2px solid black;
         }
 
         .tie {
@@ -292,12 +296,15 @@
 
         .tie:enabled:hover {
             background-color: #d1cf56;
-            cursor: pointer;
+            border: 2px solid dimgray;
+            cursor: crosshair;
         }
 
         .tie:enabled:active {
             background-color: #acab47;
-            border: 2px solid black;
+            border: 2px solid dimgray;
+            outline: 2px solid black;
+            cursor: crosshair;
         }
 
         .verify-btn {
@@ -313,12 +320,14 @@
 
         .verify-btn:enabled:hover {
             background-color: #cdcfcd;
-            cursor: pointer;
+            border: 2px solid dimgray;
+            cursor: crosshair;
         }
 
         .verify-btn:enabled:active {
             background-color: #979a97;
-            border: 2px solid black;
+            border: 2px solid dimgray;
+            outline: 2px solid black;
         }
 
         .verify-btn:disabled {
@@ -567,13 +576,6 @@
                 arraysStage(stage)[2][step - 1] = 0;
                 nextQ();
                 timeoutBtnForwards();
-                const clickableLeftQ = document.getElementById("leftQ");
-                clickableLeftQ.style.backgroundColor = "#86ac86";
-                clickableLeftQ.style.outline = "2px solid black";
-                setTimeout(() => {
-                    clickableLeftQ.style.backgroundColor = "#aeb5ae";
-                    clickableLeftQ.style.outline = "1px solid black";
-                }, 100);
             }
         }
         function tieClick() {
@@ -586,13 +588,6 @@
                 arraysStage(stage)[2][step - 1] = 2;
                 nextQ();
                 timeoutBtnForwards();
-                const clickableRightQ = document.getElementById("rightQ");
-                clickableRightQ.style.backgroundColor = "#86ac86";
-                clickableRightQ.style.outline = "2px solid black";
-                setTimeout(() => {
-                    clickableRightQ.style.backgroundColor = "#aeb5ae";
-                    clickableRightQ.style.outline = "1px solid black";
-                }, 100);
             }
         }
 
@@ -834,7 +829,9 @@
 
             fetch("/.netlify/functions/send-email", {
                 method: "POST",
-                headers: { "Content-Type": "application/json", },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({ emailType: "otp", fullName, email, passcode })
 
             })
@@ -864,7 +861,7 @@
             } else {
                 if (document.getElementById("OTPInput").value == userPasscode) {
                     for (p = 0; p < 4; p++) {
-                        csvData += convertToCSV(arraysStage(p)[3])+".../";
+                        csvData += convertToCSV(arraysStage(p)[3]) + ".../";
                     }
                     csvData = csvData.slice(0, -5);
                     document.getElementById("checkOTPBtn").disabled = 1;
@@ -878,7 +875,7 @@
         function sendVote() {
             const fullName = document.getElementById("nameInput").value;
             const email = document.getElementById("emailInput").value;
-            
+
             fetch("/.netlify/functions/send-email", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
