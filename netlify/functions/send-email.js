@@ -11,7 +11,7 @@ exports.handler = async (event) => {
                 <h2>One-Time Password</h2>
                 <p>Hello, <strong>${fullName}</strong>. To authenticate your vote, please use the following One Time Password (OTP):</p>
                 <h1>${passcode}</h1>
-                <p>Do not share this OTP with anyone. If you didn't make this request, you can safely ignore this email.<br>The Reptiles, Amphibians and Fish Club (RAF) will never contact you about this email or ask for any login codes or links. Beware of phishing scams.<br><br>Thank you for voting in the RAF Club Animal Naming Competition. Please remember that you must <strong>verify your identity to make your vote count</strong> by submitting the OTP into the correct field!<br><br>If you did not request this code, you can safely ignore this email.</p>`;
+                <p>Do not share this OTP with anyone. If you didn't make this request, you can safely ignore this email.<br>The Reptiles, Amphibians and Fish Club (RAF) will never contact you about this email or ask for any login codes or links. Beware of phishing scams.<br><br>Thank you for voting in the RAF Club Animal Naming Competition. Please remember that you must <strong>verify your identity to make your vote count</strong> by submitting the OTP into the correct field!</p>`;
 
         const transporter = nodemailer.createTransport({
             service: "Gmail",
